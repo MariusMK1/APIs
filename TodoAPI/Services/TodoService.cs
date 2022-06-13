@@ -5,44 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using TodoAPI.Data;
 using TodoAPI.Models;
+using TodoAPI.Repositories;
 
 namespace TodoAPI.Services
 {
     public class TodoService
     {
-        private readonly DataContext _dataContext;
+        private readonly TodoRepository _todoRepository;
+        public TodoService(TodoRepository todoRepository)
+        {
+            _todoRepository = todoRepository;
+        }
 
-        public TodoService(DataContext dataContext)
+        public async Task<List<Todo>> GetAll()
         {
-            _dataContext = dataContext;
+            List<Todo> todos = await _todoRepository.GetAll();
+            return todos;
         }
-        public List<Todo> GetAll()
+        public async Task<Todo> GetById(int id)
         {
-            return _dataContext.Todo.ToList();
+            Todo todo = await _todoRepository.GetById(id);
+            return todo;
         }
-        public Todo Get(int id)
+        public async Task Create(string name)
         {
-            return _dataContext.Todo.FirstOrDefault(x => x.Id == id);
+            await _todoRepository.Crate(name);
         }
-        public void Add(string name)
+        public async Task Update(Todo todo)
         {
-            Todo todo = new Todo{
-                Name = name,
-                CreatedDate = DateTime.Now,
-            };
-            _dataContext.Todo.Add(todo);
-            _dataContext.SaveChanges();
+            await _todoRepository.Update(todo);
         }
-        public void Update(Todo todo)
+        public async Task Remove(int id)
         {
-            _dataContext.Update(todo);
-            _dataContext.SaveChanges();
-        }
-        public void Remove(int id)
-        {
-            var todo = Get(id);
-            _dataContext.Todo.Remove(todo);
-            _dataContext.SaveChanges();
+            await _todoRepository.Remove(id);
         }
     }
 }

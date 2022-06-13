@@ -20,29 +20,46 @@ namespace TodoAPI.Controllers
             _todoService = todoService;
         }
         [HttpGet]
-        public List<Todo> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return _todoService.GetAll();
+            return Ok(await _todoService.GetAll());
         }
         [HttpGet("{id}")]
-        public Todo Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return _todoService.Get(id);
+            try
+            {
+                return Ok(await _todoService.GetById(id));
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
         [HttpPost]
-        public void Create(string name)
+        public async Task<IActionResult> Create(string name)
         {
-            _todoService.Add(name);
+            await _todoService.Create(name);
+            return NoContent();
         }
         [HttpPut]
-        public void Update(Todo todo)
+        public async Task<IActionResult> Update(Todo todo)
         {
-            _todoService.Update(todo);
+            await _todoService.Update(todo);
+            return NoContent();
         }
         [HttpDelete("{id}")]
-        public void Remove(int id)
+        public async Task<IActionResult> Remove(int id)
         {
-            _todoService.Remove(id);
+            try
+            {
+                await _todoService.Remove(id);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

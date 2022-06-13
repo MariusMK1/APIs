@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TodoAPI.Data;
+using TodoAPI.Repositories;
 using TodoAPI.Services;
 
 namespace TodoAPI
@@ -32,6 +33,7 @@ namespace TodoAPI
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DataContext>(d => d.UseSqlServer(connectionString));
             services.AddTransient<TodoService>();
+            services.AddTransient<TodoRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
