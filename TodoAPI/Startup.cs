@@ -34,6 +34,7 @@ namespace TodoAPI
             services.AddDbContext<DataContext>(d => d.UseSqlServer(connectionString));
             services.AddTransient<TodoService>();
             services.AddTransient<TodoRepository>();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

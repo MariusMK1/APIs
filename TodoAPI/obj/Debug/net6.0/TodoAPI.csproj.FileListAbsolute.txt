@@ -59,3 +59,5 @@ D:\Programavimas2\APIs\TodoAPI\obj\Debug\net6.0\refint\TodoAPI.dll
 D:\Programavimas2\APIs\TodoAPI\obj\Debug\net6.0\TodoAPI.pdb
 D:\Programavimas2\APIs\TodoAPI\obj\Debug\net6.0\TodoAPI.genruntimeconfig.cache
 D:\Programavimas2\APIs\TodoAPI\obj\Debug\net6.0\ref\TodoAPI.dll
+D:\Programavimas2\APIs\TodoAPI\bin\Debug\net6.0\AutoMapper.dll
+D:\Programavimas2\APIs\TodoAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
