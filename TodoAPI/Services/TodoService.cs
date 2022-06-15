@@ -36,7 +36,7 @@ namespace TodoAPI.Services
         }
         public async Task Create(string name)
         {
-            await _todoRepository.Crate(name);
+            await _todoRepository.Create(name);
         }
         public async Task Update(Todo todo)
         {

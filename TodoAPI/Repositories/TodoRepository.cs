@@ -29,7 +29,7 @@ namespace TodoAPI.Repositories
             }
             return todo;
         }
-        public async Task Crate(string name)
+        public async Task Create(string name)
         {
             Todo todo = new Todo
             {
